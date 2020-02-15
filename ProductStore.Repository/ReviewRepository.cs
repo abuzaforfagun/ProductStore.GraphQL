@@ -5,6 +5,7 @@ using ProductStore.Data.Presistance;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProductStore.Repository
@@ -17,6 +18,14 @@ namespace ProductStore.Repository
         {
             this.context = context;
         }
+
+        public  async Task<ILookup<int, Review>> GetReviewForProducts(IEnumerable<int> productsId, CancellationToken arg2)
+        {
+            var reviews = await context.ProductReviews.Where(r => productsId.Contains(r.ProductId)).ToListAsync();
+
+            return reviews.ToLookup(r => r.ProductId);
+        }
+
         public async Task<List<Review>> GetReviewForSingleProduct(int id)
         {
             return await context.ProductReviews.Where(p => p.Product.Id == id).ToListAsync();

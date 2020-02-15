@@ -1,24 +1,17 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Server;
 using GraphQL.Server.Ui.Playground;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using ProductStore.Core;
 using ProductStore.Data;
 using ProductStore.Data.Presistance;
 using ProductStore.GraphQL.GraphQL;
 using ProductStore.Repository;
-using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 
 namespace ProductStore.GraphQL
 {
@@ -43,7 +36,8 @@ namespace ProductStore.GraphQL
             services.AddScoped<ProductStoreSchema>();
 
             services.AddGraphQL(o => { o.ExposeExceptions = true; })
-                .AddGraphTypes(ServiceLifetime.Scoped);
+                .AddGraphTypes(ServiceLifetime.Scoped)
+                .AddDataLoader();
 
             services.Configure<KestrelServerOptions>(options =>
             {

@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductStore.Data.Presistance;
 
 namespace ProductStore.Data.Migrations
 {
     [DbContext(typeof(ProductStoreDbContext))]
-    partial class ProductStoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200215154307_AddProductIdInReview")]
+    partial class AddProductIdInReview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
