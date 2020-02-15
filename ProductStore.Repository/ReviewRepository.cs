@@ -4,21 +4,22 @@ using ProductStore.Data;
 using ProductStore.Data.Presistance;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ProductStore.Repository
 {
-    public class ProductRepository : IProductRepository
+    public class ReviewRepository : IReviewRepository
     {
         private readonly ProductStoreDbContext context;
 
-        public ProductRepository(ProductStoreDbContext context)
+        public ReviewRepository(ProductStoreDbContext context)
         {
             this.context = context;
         }
-        public async Task<List<Product>> GetAll()
+        public async Task<List<Review>> GetReviewForSingleProduct(int id)
         {
-            return await context.Products.ToListAsync();
+            return await context.ProductReviews.Where(p => p.Product.Id == id).ToListAsync();
         }
     }
 }

@@ -37,6 +37,7 @@ namespace ProductStore.GraphQL
             services.AddDbContext<ProductStoreDbContext>(opt => opt.UseSqlServer(_config.GetConnectionString("ProductStoreDb")));
 
             services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IReviewRepository, ReviewRepository>();
 
             services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
             services.AddScoped<ProductStoreSchema>();
