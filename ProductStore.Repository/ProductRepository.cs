@@ -16,6 +16,12 @@ namespace ProductStore.Repository
         {
             this.context = context;
         }
+
+        public Task<Product> Get(int productId)
+        {
+            return context.Products.SingleOrDefaultAsync(p => p.Id == productId);
+        }
+
         public async Task<List<Product>> GetAll()
         {
             return await context.Products.ToListAsync();

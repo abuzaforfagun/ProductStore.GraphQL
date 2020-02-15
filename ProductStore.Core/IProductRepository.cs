@@ -8,5 +8,6 @@ namespace ProductStore.Core
     public interface IProductRepository
     {
         Task<List<Product>> GetAll();
+        Task<Product> Get(int productId);
     }
 }
