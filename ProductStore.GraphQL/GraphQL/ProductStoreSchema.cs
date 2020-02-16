@@ -8,6 +8,7 @@ namespace ProductStore.GraphQL.GraphQL
         public ProductStoreSchema(IDependencyResolver resolver) : base(resolver)
         {
             Query = resolver.Resolve<ProductStoreQuery>();
+            Mutation = resolver.Resolve<ProductStoreMutation>();
         }
     }
 }

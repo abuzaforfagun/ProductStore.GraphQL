@@ -10,5 +10,6 @@ namespace ProductStore.Core
     {
         Task<List<Review>> GetReviewForSingleProduct(int id);
         Task<ILookup<int, Review>> GetReviewForProducts(IEnumerable<int> productId, CancellationToken arg2);
+        Task<Review> Add(Review review);
     }
 }

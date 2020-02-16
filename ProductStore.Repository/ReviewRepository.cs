@@ -19,6 +19,13 @@ namespace ProductStore.Repository
             this.context = context;
         }
 
+        public async Task<Review> Add(Review review)
+        {
+            context.ProductReviews.Add(review);
+            await context.SaveChangesAsync();
+            return review;
+        }
+
         public  async Task<ILookup<int, Review>> GetReviewForProducts(IEnumerable<int> productsId, CancellationToken arg2)
         {
             var reviews = await context.ProductReviews.Where(r => productsId.Contains(r.ProductId)).ToListAsync();
